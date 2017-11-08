@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -19,7 +20,9 @@ public class main extends Application{
         Scene scene = new Scene(root, 400, 300);
 
         
-   	 Circle cir = new Circle(200,150,15);
+        Player cir = new Player(15,Color.GREEN);
+        cir.setTranslateX(200);
+        cir.setTranslateY(150);
         
         root.getChildren().add(cir);
         
