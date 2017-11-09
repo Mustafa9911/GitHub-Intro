@@ -13,6 +13,9 @@ import javafx.stage.Stage;
 
 public class main extends Application{
 
+	private final double WIDTH = 500;
+	private final double HEIGHT= 500;
+	
 	boolean pressingW = false;
 	boolean pressingS = false;
 	boolean pressingA = false;
@@ -24,12 +27,12 @@ public class main extends Application{
 		
        
 		Group root = new Group();
-        Scene scene = new Scene(root, 400, 300);
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
 
         
         Player cir = new Player(15,Color.GREEN);
-        cir.setTranslateX(200);
-        cir.setTranslateY(150);
+        cir.setTranslateX(WIDTH/2.0);
+        cir.setTranslateY(HEIGHT/2.0);
         
         Text text = new Text(pressingKeyStr);
         text.setFont(Font.font(30));
