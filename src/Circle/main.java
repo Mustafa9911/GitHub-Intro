@@ -22,6 +22,7 @@ public class main extends Application{
 	boolean pressingD = false;
 	String pressingKeyStr="";
 	
+	double moveSpeed;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		
@@ -29,10 +30,13 @@ public class main extends Application{
 		Group root = new Group();
         Scene scene = new Scene(root, WIDTH, HEIGHT);
 
+        double radius = ((WIDTH+HEIGHT)/2.0)/30.0;
         
-        Player cir = new Player(15,Color.GREEN);
+        Player cir = new Player(radius,Color.GREEN);
         cir.setTranslateX(WIDTH/2.0);
         cir.setTranslateY(HEIGHT/2.0);
+        
+        moveSpeed = radius/5.0;
         
         Text text = new Text(pressingKeyStr);
         text.setFont(Font.font(30));
@@ -50,20 +54,20 @@ public class main extends Application{
 			
 
 				if(pressingW) {
-					cir.setTranslateY(cir.getTranslateY()-3);
+					cir.setTranslateY(cir.getTranslateY()-moveSpeed);
 					pressingKeyStr += "UP ";
 				}
 				if(pressingS){ 
-					cir.setTranslateY(cir.getTranslateY()+3);
+					cir.setTranslateY(cir.getTranslateY()+moveSpeed);
 					pressingKeyStr += "DOWN ";
 				}
 				if(pressingA){ 
-					cir.setTranslateX(cir.getTranslateX()-3);
+					cir.setTranslateX(cir.getTranslateX()-moveSpeed);
 					pressingKeyStr += "LEFT ";
 
 				}
 				if(pressingD){ 
-					cir.setTranslateX(cir.getTranslateX()+3);
+					cir.setTranslateX(cir.getTranslateX()+moveSpeed);
 					pressingKeyStr += "RIGHT ";
 
 				}
