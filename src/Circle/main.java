@@ -1,5 +1,6 @@
 package Circle;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,7 +11,11 @@ import javafx.stage.Stage;
 
 public class main extends Application{
 
-
+	boolean pressingW = false;
+	boolean pressingS = false;
+	boolean pressingA = false;
+	boolean pressingD = false;
+	
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -26,40 +31,73 @@ public class main extends Application{
         
         root.getChildren().add(cir);
         
+        AnimationTimer t = new AnimationTimer(){
+
+			@Override
+			public void handle(long arg0) {
+				
+				if(pressingW) cir.setTranslateY(cir.getTranslateY()-3);
+				if(pressingS) cir.setTranslateY(cir.getTranslateY()+3);
+				if(pressingA) cir.setTranslateX(cir.getTranslateX()-3);
+				if(pressingD) cir.setTranslateX(cir.getTranslateX()+3);
+				
         
-        scene.setOnKeyPressed(event ->{
-        	
-        	
-        	if(event.getCode() == KeyCode.W){
-        		
-        		cir.setTranslateY(cir.getTranslateY()-3);
-        		
-        	}else if(event.getCode() == KeyCode.S){
-        		
-        		cir.setTranslateY(cir.getTranslateY()+3);
-        		
-        	}else if(event.getCode() == KeyCode.A){
-            		
-            		cir.setTranslateX(cir.getTranslateX()-3);
-            		
-            	}else if(event.getCode() == KeyCode.D){
-            		
-            		cir.setTranslateX(cir.getTranslateX()+3);
-            		
-            	}
-        		
-        		
-        		
-        	
-        	
-        	
-        });
+	        scene.setOnKeyPressed(event ->{
+	        	
+	        	
+	        	if(event.getCode() == KeyCode.W){
+	        		
+	        		pressingW = true;
+	
+	        		
+	        	}else if(event.getCode() == KeyCode.S){
+	        		
+	        		pressingS = true;
+	
+	        		
+	        	}else if(event.getCode() == KeyCode.A){
+	            		
+		        		pressingA = true;
+	
+	            		
+	            	}else if(event.getCode() == KeyCode.D){
+	            		
+		        		pressingD = true;
+	
+	            		
+	            	}
+	        		
+	        	
+	        });
+	        
         
+	        scene.setOnKeyReleased(event->{
+	        	
+	        	if(event.getCode() == KeyCode.W){
+	        		pressingW = false;
+	        	}
+	        	else if(event.getCode() == KeyCode.S){        	
+	        		pressingS = false;
+	        	}
+	        	else if(event.getCode() == KeyCode.A){
+	        		pressingA = false;
+	        	}
+	        	else if(event.getCode() == KeyCode.D){
+	        		pressingD = false;
+	
+	        	}
+	
+	        });
+			}
+        };
+        
+        t.start();
+      
         primaryStage.setTitle("My JavaFX Application");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-	
+   
+        }
 	public static void main(String[] args) {
 		launch(args);
 	}
